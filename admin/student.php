@@ -74,11 +74,11 @@ if ($_SESSION['RollNo']) {
                     <!--/.span3-->
 
                     <div class="span9">
-                        <form class="form-horizontal row-fluid" action="current.php" method="post">
+                        <form class="form-horizontal row-fluid" action="student.php" method="post">
                                         <div class="control-group">
                                             <label class="control-label" for="Search"><b>Search:</b></label>
                                             <div class="controls">
-                                                <input type="text" id="title" name="title" placeholder="Enter Roll No of Student/Book Name/Book Id." class="span8" required>
+                                                <input type="text" id="title" name="title" placeholder="Enter Name/Roll No of Student" class="span8" required>
                                                 <button type="submit" name="submit"class="btn">Search</button>
                                             </div>
                                         </div>
@@ -87,10 +87,11 @@ if ($_SESSION['RollNo']) {
                                     <?php
                                     if(isset($_POST['submit']))
                                         {$s=$_POST['title'];
-                                            $sql="select record.BookId,RollNo,Title,Due_Date,Date_of_Issue,datediff(curdate(),Due_Date) as x from LMS.record,LMS.book where (Date_of_Issue is NOT NULL and Date_of_Return is NULL and book.Bookid = record.BookId) and (RollNo='$s' or record.BookId='$s' or Title like '%$s%')";
+                                            $sql="select * from LMS.user where (RollNo='$s' or Name like '%$s%') and RollNo<>'ADMIN'";
                                         }
                                     else
-                                        $sql="select record.BookId,RollNo,Title,Due_Date,Date_of_Issue,datediff(curdate(),Due_Date) as x from LMS.record,LMS.book where Date_of_Issue is NOT NULL and Date_of_Return is NULL and book.Bookid = record.BookId";
+                                        $sql="select * from LMS.user where RollNo<>'ADMIN'";
+
                                     $result=$conn->query($sql);
                                     $rowcount=mysqli_num_rows($result);
 
@@ -104,49 +105,38 @@ if ($_SESSION['RollNo']) {
                         <table class="table" id = "tables">
                                   <thead>
                                     <tr>
-                                      <th>Roll No</th>  
-                                      <th>Book id</th>
-                                      <th>Book name</th>
-                                      <th>Issue Date</th>
-                                      <th>Due date</th>
-                                      <th>Dues</th>
+                                      <th>Name</th>
+                                      <th>Roll No.</th>
+                                      <th>Email id</th>                                      
+                                      <th></th>
                                     </tr>
                                   </thead>
                                   <tbody>
-
-                                <?php
-
+                    <?php
                             
-
                             //$result=$conn->query($sql);
                             while($row=$result->fetch_assoc())
                             {
-                                $rollno=$row['RollNo'];
-                                $bookid=$row['BookId'];
-                                $name=$row['Title'];
-                                $issuedate=$row['Date_of_Issue'];
-                                $duedate=$row['Due_Date'];
-                                $dues=$row['x'];
-                            
-                            ?>
 
+                                $email=$row['EmailId'];
+                                $name=$row['Name'];
+                                $rollno=$row['RollNo'];
+                            ?>
                                     <tr>
-                                      <td><?php echo strtoupper($rollno) ?></td>
-                                      <td><?php echo $bookid ?></td>
                                       <td><?php echo $name ?></td>
-                                      <td><?php echo $issuedate ?></td>
-                                      <td><?php echo $duedate ?></td>
-                                      <td><?php if($dues > 0)
-                                                  echo "<font color='red'>".$dues."</font>";
-                                                else
-                                                  echo "<font color='green'>0</font>";
-                                              ?>
+                                      <td><?php echo $rollno ?></td>
+                                      <td><?php echo $email ?></td>                                      
+                                        <td>
+                                        <center>
+                                            <a href="studentdetails.php?id=<?php echo $rollno; ?>" class="btn btn-success">Details</a>
+                                            <!--a href="remove_student.php?id=<?php echo $rollno; ?>" class="btn btn-danger">Remove</a-->
+                                      </center>
+                                        </td>
                                     </tr>
                             <?php }} ?>
-                                    </tbody>
+                                  </tbody>
                                 </table>
-                    </div>
-
+                            </div>
                     <!--/.span9-->
                 </div>
             </div>
