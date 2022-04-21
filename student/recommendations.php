@@ -25,7 +25,7 @@ if ($_SESSION['RollNo']) {
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index.php">LMS </a>
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index.php">Live Library </a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav pull-right">
                             <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -118,7 +118,7 @@ if ($_SESSION['RollNo']) {
         </div>
 <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved.
+                <b class="copyright">&copy; 2022 Live Library Group 9 </b>All rights reserved.
             </div>
         </div>
         
