@@ -6,5 +6,6 @@ Live Library
 
 ## Contributors
 * [Atharva Kathale](https://github.com/Atharva-K12)
-ojas sharma
-Harsh Yellare
+* [Ojas Sharma](https://github.com/ojas29092000)
+* [Harsh Yellare](https://github.com/HarshYellare28)
+* [Adwait Deshpande](https://github.com/Adwait110901)
